@@ -1,4 +1,5 @@
 from os import getenv
+
 storage_type = getenv("PASSGUARD_STORAGE_TYPE")
 
 if storage_type == "db":

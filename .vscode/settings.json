@@ -2,9 +2,11 @@
     "cSpell.words": [
         "autoload",
         "backref",
+        "fernet",
         "genpass",
         "genrate",
         "genrated",
+        "hashgen",
         "passguardcmd",
         "sessionmaker"
     ]

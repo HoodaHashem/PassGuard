@@ -1,6 +1,5 @@
 import cmd
 from models.genpass import genrate
-from models.user import User
 from models import storage
 class PassGuardCmd(cmd.Cmd):
     """Simple command line interpreter for PassGuard"""
@@ -45,12 +44,11 @@ class PassGuardCmd(cmd.Cmd):
             if len(password) < 8:
                 print("Password must be at least 8 characters long.")
                 return
-        user = User()
-        user.new_user(username, password)
-        print("User created successfully!")
+        storage.save_user(username, password)
+        print("==========> User created successfully! <==========")
         PassGuardCmd.__username = username
         PassGuardCmd.__password = password
-        print("You are now logged in")
+        print("==========> You are now logged in! <==========")
 
     def do_delete_user(self, arg):
         """Delete a user."""
@@ -98,17 +96,14 @@ class PassGuardCmd(cmd.Cmd):
         storage.add_data(PassGuardCmd.__username, url, url_password, PassGuardCmd.__password)
         print("Password added successfully!")
 
-    def do_show_users(self, arg):
-        """List all users."""
-        users = storage.all_users()
-        for user in users:
-            print(user)
 
     def do_show_passes(self, arg):
         """List all passwords."""
         passes = storage.all_passes(PassGuardCmd.__username, PassGuardCmd.__password)
         if passes:
-            print(passes)
+            for pw in passes:
+                print(pw)
+                print("=" * 50)
         else:
             print("No passwords found!")
 
@@ -124,7 +119,7 @@ class PassGuardCmd(cmd.Cmd):
             print(f"Generated password: {url_password}")
         else:
             url_password = input("Enter the password: ")
-        storage.update_data(PassGuardCmd.__username, url, url_password, PassGuardCmd.__password)
+        storage.update_pass(PassGuardCmd.__username, url, url_password, PassGuardCmd.__password)
         print("Password updated successfully!")
 
     def do_delete_pass(self, arg):
