@@ -4,11 +4,8 @@
 PassGuard Manager is a command-line password management tool designed for users who prefer a lightweight and secure solution for managing their passwords. Built with security as a top priority, PassGuard Manager offers a robust set of features to ensure the confidentiality and integrity of user passwords.
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![Image Description](imgs/Screenshot from 2024-03-29 10-21-00.png)
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
 ## Installation
 
