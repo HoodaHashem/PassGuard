@@ -142,7 +142,7 @@ class File_Storage:
                 if r_user == UserName and r_password == PassWord:
                     for i in values.keys():
                         url ,password = inst.decrypt_passwords(master_key.encode(), i.encode(), values[i].encode())
-                        lst.append(f"URL: {url} Password: {password}")
+                        lst.append(f"URL=> {url}, Password=> {password}")
         return lst
 
     def check_for_url(self, UserName, URL, PassWord):

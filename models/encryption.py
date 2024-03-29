@@ -48,6 +48,19 @@ class Encryption:
         decrypted_password = cipher_suite.decrypt(encrypted_password).decode()
         return decrypted_username, decrypted_password
 
+    def decrypt_user(self, key, encrypted_user):
+        """Decrypt the user"""
+        cipher_suite = Fernet(key)
+        decrypted_user = cipher_suite.decrypt(encrypted_user).decode()
+        return decrypted_user
+
+
+    def encrypt_user_password(self, key, password):
+        """Encrypt the password"""
+        cipher_suite = Fernet(key)
+        encrypted_password = cipher_suite.encrypt(password.encode())
+        return encrypted_password
+
     def encrypt_passwords(self, key, url, password):
         """Encrypt the passwords"""
         cipher_suite = Fernet(key)
@@ -62,11 +75,6 @@ class Encryption:
         decrypted_password = cipher_suite.decrypt(encrypted_password).decode()
         return decrypted_url, decrypted_password
 
-    def decrypt_user(self, key, encrypted_user):
-        """Decrypt the user"""
-        cipher_suite = Fernet(key)
-        decrypted_user = cipher_suite.decrypt(encrypted_user).decode()
-        return decrypted_user
 
     def decrypt_password(self, key, encrypted_password):
         """Decrypt the password"""
@@ -79,4 +87,3 @@ class Encryption:
         cipher_suite = Fernet(key)
         encrypted_user = cipher_suite.encrypt(user.encode())
         return encrypted_user
-
