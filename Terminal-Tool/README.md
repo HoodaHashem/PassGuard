@@ -1,11 +1,11 @@
 <h1 align="center">PassGuard</h1>
-<h2 align="center">Terminal-Tool.</h2>
+<h2 align="center">Terminal-Tool</h2>
 
 PassGuard Manager is a command-line password management tool designed for users who prefer a lightweight and secure solution for managing their passwords. Built with security as a top priority, PassGuard Manager offers a robust set of features to ensure the confidentiality and integrity of user passwords.
 ## Screenshots
 
-![Final Look](Terminal-Tool/imgs/Screenshot1.png)
-![The info that will be stored](Terminal-Tool/imgs/Screenshot2.png)
+![Final Look](imgs/Screenshot1.png)
+![The info that will be stored](imgs/Screenshot2.png)
 
 ## Installation
 
