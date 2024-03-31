@@ -12,11 +12,11 @@
 {% block nav %}
 <nav>
   <ul>
-    <li><a href="home.html">Home</a></li>
-    <li><a href="About.html">About PassGuard</a></li>
-    <li><a href="Getintouch.html">Get in touch</a></li>
-    <li><a href="login.html">Login</a></li>
-    <li><a class="active" href="signup.html">Create An Account</a></li>
+    <li><a href="home">Home</a></li>
+    <li><a href="about">About PassGuard</a></li>
+    <li><a href="Getintouch">Get in touch</a></li>
+    <li><a href="login">Login</a></li>
+    <li><a class="active" href="signup">Create An Account</a></li>
   </ul>
 </nav>
 {% endblock %}
@@ -24,23 +24,32 @@
 <div class="container1">
   <div class="login">
     <h1 class="loginw">Create An Account!</h1>
-    <form action="/login" method="post">
-      <div class="mb-3">
-        <label for="username" class="form-label">Username</label>
-        <input type="text" class="form-control" id="username" name="username">
-      </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" name="email">
-      </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password" name="password">
-      </div>
-      <button type="submit" class="btn btn-primary">Create Now</button>
-      <div class="mb-3">
-        <label for="password" class="lol">Already have an account? <a class="login-link" href="login.html">Login</a></label>
-      </div>
+    <form action="" method="POST">
+      {{ form.hidden_tag() }}
+      <fieldset class="form-group">
+        <div class="form-group">
+          {{ form.username.label(class="form-control-label") }}
+          {{ form.username(class="form-control form-control-lg") }}
+        </div>
+        <div class="form-group">
+          {{ form.email.label(class="form-control-label") }}
+          {{ form.email(class="form-control form-control-lg") }}
+        </div>
+        <div class="form-group">
+          {{ form.password.label(class="form-control-label") }}
+          {{ form.password(class="form-control form-control-lg") }}
+        </div>
+        <div class="form-group">
+          {{ form.confirm_password.label(class="form-control-label") }}
+          {{ form.confirm_password(class="form-control form-control-lg") }}
+        </div>
+        <div>
+          <p>Already Have An Account ? <a id="signin" href="login">Login</a></p>
+        </div>
+        <div id="signbtn" class="form-group">
+          {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+      </fieldset>
     </form>
   </div>
 </div>

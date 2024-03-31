@@ -77,63 +77,29 @@ header nav ul li a:hover{
   color: var(--main-color);
 }
 
-.btn.btn-primary{
-    background-color: #fff;
-    color: var(--main-color);
+
+#signbtn{
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+#submit{
+    background-color: var(--main-color);
+    color: #fff;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: 0.5s;
+    transition: 0.3s;
 }
-
-.btn.btn-primary:hover{
-    background-color: var(--main-color);
-    color: white;
-}
-
-.lol {
-  color:#fff;
-  text-decoration: none;
-}
-
-.login-link {
-    color: var(--main-color);
-    text-decoration: none;
-}
-
-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
-.container2 {
-    padding: 20px;
-    align-items: center;
-    text-align: center;
-    color: #fff;
-}
-
-.social-links {
-    list-style-type: none;
-    padding: 0;
-}
-
-.social-links li {
-    display: inline;
-    margin: 0 10px;
-}
-
-.social-links a {
-    text-decoration: none;
+#submit:hover{
+    background-color: #fff;
     color: var(--main-color);
 }
+.form-group {
+    margin-bottom: 20px;
+}
 
-.Author {
+#signin{
     color: var(--main-color);
 }
