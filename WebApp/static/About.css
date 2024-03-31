@@ -152,3 +152,11 @@ footer {
     color: var(--main-color);
     text-decoration: none;
 }
+
+.heading {
+    color: var(--main-color);
+    font-size: 50px;
+    font-style: italic;
+    margin-top: 50px;
+    text-align: center;
+}

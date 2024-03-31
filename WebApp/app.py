@@ -10,7 +10,20 @@ def home():
 
 @app.route('/Getintouch')
 def Getintouch():
-    return render_template('Getintouch.html' , footer=False, title='Get in touch')
+    return render_template('Getintouch.html' , footer=False)
+
+@app.route('/about')
+def about():
+    return render_template('About.html' , footer=True)
+
+@app.route('/login')
+def login():
+    return render_template('login.html' , footer=True)
+
+@app.route('/signup')
+def signup():
+    return render_template('signup.html' , footer=True)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
