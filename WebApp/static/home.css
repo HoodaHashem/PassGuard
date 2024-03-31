@@ -1,0 +1,188 @@
+:root {
+  --main-color: #D01F06;
+}
+
+body{
+  background-image: url("images/Background1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+header {
+    margin-top: 20px;
+}
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+header .container::after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: calc(100% - 50px);
+    background-color: #757474;
+    bottom: 0;
+    left: 15px;
+}
+header .logo img{
+    height: 50px;
+    margin-left: 50px;
+}
+
+
+.passele{
+    color: var(--main-color);
+    text-decoration: none;
+    font-size: 30px;
+    font-style: italic;
+}
+
+header nav {
+    justify-content: flex-end;
+    align-items: center;
+    flex: 1;
+    display: flex;
+}
+header nav ul {
+    display: flex;
+    list-style-type: none;
+    margin-right: 50px;
+}
+
+header nav ul li a{
+    padding: 3px 10px;
+    display: block;
+    text-decoration: none;
+    transition: 0.3s;
+    color : #fff;
+}
+
+header nav ul li a.active,
+header nav ul li a:hover{
+    color: var(--main-color);
+}
+
+.container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    color: #fff;
+}
+
+.loginw {
+  color: var(--main-color);
+}
+
+.btn.btn-primary{
+    background-color: #fff;
+    color: var(--main-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.btn.btn-primary:hover{
+    background-color: var(--main-color);
+    color: white;
+}
+
+.create-link{
+    color: var(--main-color);
+    text-decoration: none;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.container2 {
+    padding: 20px;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+}
+
+.social-links {
+    list-style-type: none;
+    padding: 0;
+}
+
+.social-links li {
+    display: inline;
+    margin: 0 10px;
+}
+
+.social-links a {
+    text-decoration: none;
+    color: var(--main-color);
+}
+
+.Author {
+    color: var(--main-color);
+}
+
+#about {
+    color: #fff;
+    font-size: 20px;
+    font-style: italic;
+    margin-top: 50px;
+}
+
+#github {
+    color: #fff;
+    font-size: 20px;
+    font-style: italic;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.readme {
+    color: var(--main-color);
+    text-decoration: none;
+}
+
+#intro {
+    color: #fff;
+    font-size: 20px;
+    font-style: italic;
+    margin-top: 50px;
+}
+
+.features {
+    color: var(--main-color);
+    font-style: italic;
+    margin-top: 50px;
+    font-size: 50px;
+}
+
+.listele {
+    color: #fff;
+    font-size: 20px;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+.heading {
+    color: var(--main-color);
+    font-size: 50px;
+    font-style: italic;
+}
+
+.learnmore {
+    color: var(--main-color);
+    font-size: 20px;
+    font-style: italic;
+    margin-top: 50px;
+}
