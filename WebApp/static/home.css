@@ -178,7 +178,10 @@ footer {
     color: var(--main-color);
     font-size: 50px;
     font-style: italic;
+    display: flex;
+    align-items: center; 
 }
+
 
 .learnmore {
     color: var(--main-color);

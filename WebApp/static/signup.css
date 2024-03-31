@@ -75,6 +75,7 @@ header nav ul li a:hover{
 
 .loginw {
   color: var(--main-color);
+  font-style: italic;
 }
 
 
@@ -102,4 +103,10 @@ header nav ul li a:hover{
 
 #signin{
     color: var(--main-color);
+}
+
+.para {
+    font-size: 18px;
+    font-style: italic;
+    margin-top: 20px;
 }

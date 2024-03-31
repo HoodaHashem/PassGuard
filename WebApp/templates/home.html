@@ -11,11 +11,11 @@
 {% endblock %}
 {% block nav %}
 <ul>
-  <li><a class="active" href="home">Home</a></li>
-  <li><a href="about">About PassGuard</a></li>
-  <li><a href="Getintouch">Get in touch</a></li>
-  <li><a href="login">Login</a></li>
-  <li><a href="signup">Create An Account</a></li>
+  <li><a class="active" href="{{ url_for('home') }}">Home</a></li>
+  <li><a href="{{ url_for('about') }}">About PassGuard</a></li>
+  <li><a href="{{ url_for('Getintouch') }}">Get in touch</a></li>
+  <li><a href="{{ url_for('login') }}">Login</a></li>
+  <li><a href="{{ url_for('signup') }}">Create An Account</a></li>
 </ul>
 {% endblock %}
 {% block content %}
@@ -24,8 +24,8 @@
       <div id="intro" class="col-md-6">
         <h1 class="heading">PassGuard</h1>
         <p>PassGuard is a password manager that helps you to store your passwords in a secure way. It uses a strong encryption algorithm to encrypt your passwords and store them in a secure way. You can access your passwords from any device and any location. PassGuard is a free and open-source software.</p>
-        <a href="create.html" class="btn btn-primary">Create An Account</a>
-        <a href="login.html" class="btn btn-primary"> Login into your account</a>
+        <a href="{{ url_for('signup') }}" class="btn btn-primary">Create An Account</a>
+        <a href="{{ url_for('login') }}" class="btn btn-primary"> Login into your account</a>
       </div>
       <div class="col-md-6">
         <h1 class="features">Features</h1>
@@ -37,10 +37,10 @@
         </ul>
       </div>
       <div class="col-md-6">
-        <a class="learnmore" href="About.html">Learn more</a>
+        <a class="learnmore" href="{{ url_for('about') }}">Learn more</a>
       </div>
       <div class="col-md-6">
-        <a class="learnmore" href="Getintouch.html">Get in touch</a>
+        <a class="learnmore" href="{{ url_for('Getintouch') }}">Get in touch</a>
       </div>
     </div>
     <div id="col-md-6">

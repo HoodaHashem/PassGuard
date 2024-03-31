@@ -5,9 +5,9 @@
 <body>
   <header>
     <div class="container">
-      <a href="home" class="logo">
+      <a href="{{ url_for('home') }}" class="logo">
           <img src="/static/images/logo.png" alt="logo">
-          <li><a class='passele' href="home">PassGuard</a></li>
+          <li><a class='passele' href="{{ url_for('home') }}">PassGuard</a></li>
       </a>
       <nav>
         {% block nav %}
@@ -16,6 +16,15 @@
     </div>
   </header>
   <div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
     {% block content %}{% endblock %}
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

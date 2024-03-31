@@ -12,32 +12,59 @@
 {% block nav %}
 <nav>
   <ul>
-    <li><a href="home">Home</a></li>
-    <li><a href="about">About PassGuard</a></li>
-    <li><a href="Getintouch">Get in touch</a></li>
-    <li><a class="active" href="login">Login</a></li>
-    <li><a href="signup">Create An Account</a></li>
+    <li><a href="{{ url_for('home') }}">Home</a></li>
+    <li><a href="{{ url_for('about') }}">About PassGuard</a></li>
+    <li><a href="{{ url_for('Getintouch') }}">Get in touch</a></li>
+    <li><a class="active" href="{{ url_for('login') }}">Login</a></li>
+    <li><a href="{{ url_for('signup') }}">Create An Account</a></li>
   </ul>
 </nav>
 {% endblock %}
 {% block content %}
 <div class="container1">
   <div class="login">
-    <h1 class="loginw">Login</h1>
-    <form action="/login" method="post">
-      <div class="mb-3">
-        <label for="username" class="form-label">Username</label>
-        <input type="text" class="form-control" id="username" name="username">
-      </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password" name="password">
-      </div>
-      <div class="mb-3">
-        <label for="password" class="lol">Don't have an Account ?<a class="create-link" href="/templates/create.html">Create Now</a></label>
-      </div>
-      <button type="submit" class="btn btn-primary">Login</button>
-    </form>
-  </div>
-</div>
+    <h1 class="loginw">Login Into Your Account</h1>
+    <form action="" method="POST">
+      {{ form.hidden_tag() }}
+      <fieldset class="form-group">
+        <div class="form-group">
+          {{ form.email.label(class="form-control-label") }}
+          {% if form.email.errors %}
+            {{ form.email(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.email.errors %}
+                <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.email(class="form-control form-control-lg") }}
+          {% endif %}
+        </div>
+        <div class="form-group">
+          {{ form.password.label(class="form-control-label") }}
+          {{ form.password(class="form-control form-control-lg") }}
+        </div>
+        <div class="form-check">
+          <div class="d-flex justify-content-between">
+            <div>
+              {{ form.remember(class="form-check-input") }}
+              {{ form.remember.label(class="form-check-label") }}
+            </div>
+            <div>
+              <small class="text-muted">
+                <a id="forgot" href="#">Forgot Password?</a>
+              </small>
+            </div>
+          </div>
+        </div>
+        <div id="signbtn" class="form-group">
+          {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+        <div>
+          <p class="para">Need An Account? &nbsp;<a id="signin" href="{{ url_for('signup') }}">Sign Up Now</a></p>
+        </div>
+        </fieldset>
+        </form>
+        </div>
+        </div>
 {% endblock %}

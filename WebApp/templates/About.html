@@ -11,11 +11,11 @@
 {% endblock %}
 {% block nav %}
 <ul>
-  <li><a href="home">Home</a></li>
-  <li><a class="active" href="about">About PassGuard</a></li>
-  <li><a href="Getintouch">Get in touch</a></li>
-  <li><a href="login">Login</a></li>
-  <li><a href="signup">Create An Account</a></li>
+  <li><a href="{{ url_for('home') }}">Home</a></li>
+  <li><a class="active" href="{{ url_for('about') }}">About PassGuard</a></li>
+  <li><a href="{{ url_for('Getintouch') }}">Get in touch</a></li>
+  <li><a href="{{ url_for('login') }}">Login</a></li>
+  <li><a href="{{ url_for('signup') }}">Create An Account</a></li>
 </ul>
 {% endblock %}
 {% block content %}
