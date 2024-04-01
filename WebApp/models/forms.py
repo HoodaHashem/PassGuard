@@ -122,3 +122,31 @@ class DeletePassword(FlaskForm):
             lst.append(inst.decrypt_message(i.url, key))
         if url not in lst:
             raise ValidationError('URL does not exist in your vault.')
+
+class SecretGuardForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Generate Secret Key')
+
+    def validate_email(self, email):
+        email = email.data
+        user = session1.query(User).filter_by(email=email).first()
+        if not user:
+            raise ValidationError('Email does not exist. Please enter a valid email.')
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Reset Password')
+
+    def validate_password(self, password):
+        password = password.data
+        if len(password) < 8:
+            raise ValidationError('Password must be at least 8 characters long.')
+        if not any(char.isdigit() for char in password):
+            raise ValidationError('Password must contain at least one digit.')
+        if not any(char.isupper() for char in password):
+            raise ValidationError('Password must contain at least one uppercase letter.')
+        if not any(char.islower() for char in password):
+            raise ValidationError('Password must contain at least one lowercase letter.')
+        if not any(char in ['$', '@', '#', '%', '!', '&', '-', '_'] for char in password):
+            raise ValidationError('Password must contain at least one special character.')

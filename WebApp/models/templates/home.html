@@ -15,12 +15,10 @@
     <li><a class="active" href="{{ url_for('home') }}">Home</a></li>
     <li><a href="{{ url_for('account') }}">Account</a></li>
     <li><a href="{{ url_for('about') }}">About PassGuard</a></li>
-    <li><a href="{{ url_for('Getintouch') }}">Get in touch</a></li>
     <li><a href="{{ url_for('logout') }}">Logout</a></li>
   {% else %}
     <li><a class="active" href="{{ url_for('home') }}">Home</a></li>
     <li><a href="{{ url_for('about') }}">About PassGuard</a></li>
-    <li><a href="{{ url_for('Getintouch') }}">Get in touch</a></li>
     <li><a href="{{ url_for('login') }}">Login</a></li>
     <li><a href="{{ url_for('signup') }}">Create An Account</a></li>
   {% endif %}
@@ -50,9 +48,6 @@
       </div>
       <div class="col-md-6">
         <a class="learnmore" href="{{ url_for('about') }}">Learn more</a>
-      </div>
-      <div class="col-md-6">
-        <a class="learnmore" href="{{ url_for('Getintouch') }}">Get in touch</a>
       </div>
     </div>
     <div id="col-md-6">

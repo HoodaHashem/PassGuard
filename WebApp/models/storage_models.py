@@ -1,3 +1,4 @@
+from itsdangerous import URLSafeTimedSerializer 
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, MetaData
 from sqlalchemy.orm import sessionmaker, relationship, backref, declarative_base
 from models.extensions import login_manager
@@ -21,6 +22,21 @@ class User(Base1, UserMixin):
     username = Column(String(30), unique=True, nullable=False)
     email = Column(String(120), unique=True, nullable=False)
     password = Column(String(50), nullable=False)
+
+    def get_reset_token(self, expires_sec=1800):
+        from models.routes import app
+        s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+        return s.dumps({'user_id': self.id})
+
+    @staticmethod
+    def verify_reset_token(token):
+        from models.routes import app
+        s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+        try:
+            user_id = s.loads(token, max_age=1800)['user_id']
+        except:
+            return None
+        return session1.query(User).get(user_id)
 
 class Vault(Base2):
     __tablename__ = 'vault'

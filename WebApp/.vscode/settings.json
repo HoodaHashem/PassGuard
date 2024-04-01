@@ -5,7 +5,10 @@
     "enurl",
     "enuser",
     "Getintouch",
+    "hexlify",
+    "itsdangerous",
     "sessionmaker",
+    "urandom",
     "wtforms"
   ]
 }

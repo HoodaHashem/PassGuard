@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, redirect, flash, request
-from models.forms import RegistrationForm, LoginForm, UpdateAccountForm, CreateNewPassword, UpdatePassword, DeletePassword
+from models.forms import RegistrationForm, LoginForm, UpdateAccountForm, CreateNewPassword, UpdatePassword, DeletePassword, ResetPasswordForm, SecretGuardForm
 from models.storage_models import Base1, Base2, Base3, engine1, engine2, engine3, User, Vault, SecretGuard
 from datetime import datetime
 from sqlalchemy.orm import sessionmaker
@@ -8,9 +8,16 @@ import hashlib
 from flask_login import UserMixin, login_user, current_user, logout_user, login_required
 from models.extensions import login_manager
 from models.encryption import Encryption
+import smtplib
+import os
+import binascii
+
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '2a67f7d6ba6bb5c0e829e3a4f99237f7'
+app.config['SECRET_KEY'] = binascii.hexlify(os.urandom(24)).decode()
+
+
+
 
 bcrypt = Bcrypt(app)
 login_manager.init_app(app)
@@ -103,9 +110,7 @@ def account():
         session1.commit()
         flash('Your account has been updated!', 'success')
         return redirect(url_for('account'))
-    elif request.method == 'GET':
-        form.username.data = current_user.username
-        form.email.data = current_user.email
+
 
     count = session2.query(Vault).filter_by(username=current_user.username).count()
     if count > 1 or count == 0:
@@ -196,3 +201,45 @@ def update_password():
         flash('Password has been updated!', 'success')
         return redirect(url_for('account'))
     return render_template('update_password.html' , footer=True, form=form)
+
+def send_reset_email(user):
+    token = user.get_reset_token()
+    EMAILNAME = os.environ.get('EMAIL_USER')
+    EMAILPASS = os.environ.get('EMAIL_PASS')
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login(EMAILNAME, EMAILPASS)
+    server.sendmail(EMAILNAME, user.email, f'''To reset your password, visit the following 
+link:{url_for('reset_token', token=token, _external=True)}
+If you did not make this request then simply ignore this email and no changes will be made.''')
+
+
+@app.route('/reset_password', methods=['GET', 'POST'])
+def reset_request():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    form = SecretGuardForm()
+    if form.validate_on_submit():
+        user = session1.query(User).filter_by(email=form.email.data).first()
+        send_reset_email(user)
+        flash(f'An email has been sent with instructions to reset your password.', 'info')
+        return redirect(url_for('login'))
+    return render_template('reset_request.html' , footer=False, form=form)
+
+@app.route('/reset_password/<token>', methods=['GET', 'POST'])
+def reset_token(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    user = User.verify_reset_token(token)
+    if user is None:
+        flash('That is an invalid or expired token', 'warning')
+        return redirect(url_for('reset_request'))
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        hashed_password = Bcrypt().generate_password_hash(form.password.data).decode('utf-8')
+        user = session1.query(User).filter_by(email=user.email).first()
+        user.password = hashed_password
+        session1.commit()
+        flash(f'Your password has been updated! You are now able to login.', 'success')
+        return redirect(url_for('login'))
+    return render_template('reset_token.html' , footer=False, form=form)
