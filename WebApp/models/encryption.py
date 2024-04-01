@@ -21,22 +21,13 @@ class Encryption:
         )
         return base64.urlsafe_b64encode(kdf.derive(password.encode()))
 
-    def encrypt_username(self, key, username):
-        """Encrypt the username"""
+    def encrypt_message(self, message, key):
+        """Encrypt a message"""
         f = Fernet(key)
-        return f.encrypt(username.encode())
+        return f.encrypt(message.encode())
 
-    def decrypt_username(self, key, username):
-        """Decrypt the username"""
+    def decrypt_message(self, token, key):
+        """Decrypt a message"""
         f = Fernet(key)
-        return f.decrypt(username).decode()
+        return f.decrypt(token).decode()
 
-    def encrypt_email(self, key, email):
-        """Encrypt the email"""
-        f = Fernet(key)
-        return f.encrypt(email.encode())
-
-    def decrypt_email(self, key, email):
-        """Decrypt the email"""
-        f = Fernet(key)
-        return f.decrypt(email).decode()
