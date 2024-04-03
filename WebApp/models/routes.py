@@ -38,10 +38,6 @@ session3 = sessionmaker(bind=engine3)()
 def home():
     return render_template('home.html' , footer=True)
 
-@app.route('/Getintouch')
-def Getintouch():
-    return render_template('Getintouch.html' , footer=False)
-
 @app.route('/about')
 def about():
     return render_template('About.html' , footer=True)
@@ -103,11 +99,17 @@ def logout():
 def account():
     form = UpdateAccountForm()
     if form.validate_on_submit():
-        user = session1.query(User).filter_by(id=current_user.id).first()
-        user.username = hashlib.sha256(form.username.data.encode()).hexdigest()
-        current_user.username = hashlib.sha256(form.username.data.encode()).hexdigest()
-        current_user.email = hashlib.sha256(form.email.data.encode()).hexdigest()
+        user = session1.query(User).filter_by(username=current_user.username).first()
+        user.username = form.username.data
+        user.email = form.email.data
         session1.commit()
+        user_secret = session3.query(SecretGuard).filter_by(user_name=current_user.username).first()
+        user_secret.user_name = form.username.data
+        session3.commit()
+        user_credentials = session2.query(Vault).filter_by(username=current_user.username).all()
+        for i in user_credentials:
+            i.username = form.username.data
+            session2.commit()
         flash('Your account has been updated!', 'success')
         return redirect(url_for('account'))
 
@@ -157,15 +159,15 @@ def delete_password():
         inst = Encryption()
         urls = session2.query(Vault).filter_by(username=current_user.username).all()
         for i in urls:
-            if inst.decrypt_message(i.url, key) == url and inst.decrypt_message(i.email, key) == email and inst.decrypt_message(i.password, key) == password:
+            if inst.decrypt_message(i.url, key) == url and inst.decrypt_message(i.password, key) == password:
                 session2.delete(i)
                 session2.commit()
+                flash('Password has been deleted!', 'success')
+                return redirect(url_for('account'))
                 break
-            else:
-                flash('Invalid Credentials!', 'danger')
-                return redirect(url_for('delete_password'))
-        flash('Password has been deleted!', 'success')
-        return redirect(url_for('account'))
+
+        flash('Invalid Credentials!', 'danger')
+        return redirect(url_for('delete_password'))
     return render_template('delete_password.html' , footer=True, form=form)
 
 @app.route('/show/passwords/', methods=['GET', 'POST'])
@@ -204,8 +206,8 @@ def update_password():
 
 def send_reset_email(user):
     token = user.get_reset_token()
-    EMAILNAME = os.environ.get('EMAIL_USER')
-    EMAILPASS = os.environ.get('EMAIL_PASS')
+    EMAILNAME = 'passguard0@gmail.com'
+    EMAILPASS = 'breorenowxczvpaw'
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
     server.login(EMAILNAME, EMAILPASS)
