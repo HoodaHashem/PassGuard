@@ -81,8 +81,6 @@ class CreateNewPassword(FlaskForm):
         url = URL.data
         if not url.startswith('http://') and not url.startswith('https://'):
             raise ValidationError('Invalid URL. Please include http:// or https://')
-        if requests.get(url).status_code != 200:
-            raise ValidationError('Invalid URL. Please enter a valid URL.')
 
     def recommend_password(self):
         recommended_password = generate_password()
