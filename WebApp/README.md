@@ -3,6 +3,9 @@
 
 PassGuard is a secure web application designed to help you manage your passwords effectively. With PassGuard, you can securely store your passwords, ensuring that your online accounts remain protected.
 
+## Diagram
+![Diagram](imgs/diagram.png)
+
 ## Features
 
 - **End-to-End Encryption:** PassGuard encrypts your passwords using advanced encryption algorithms, ensuring that your sensitive information remains secure.
