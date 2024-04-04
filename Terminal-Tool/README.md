@@ -2,6 +2,10 @@
 <h2 align="center">Terminal-Tool</h2>
 
 PassGuard Manager is a command-line password management tool designed for users who prefer a lightweight and secure solution for managing their passwords. Built with security as a top priority, PassGuard Manager offers a robust set of features to ensure the confidentiality and integrity of user passwords.
+
+## Diagram
+![Diagram](imgs/diagram.png)
+
 ## Screenshots
 
 ![Final Look](imgs/Screenshot1.png)
@@ -13,13 +17,10 @@ Install PassGuard through
 ```
 https://github.com/Hoodahashem/PassGuard.git
 ```
-Then activate the vertual environment through
-```
-source venv/bin/activate
-```
+
 Then you'r good to lunch the Program
 ```
-python passguradcmd.py
+./passguradcmd
 ```
 
 ## Environment Variables
